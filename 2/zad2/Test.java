@@ -20,22 +20,28 @@ public class Test{
     }
 
 
-	private static void loadRect(){
+	private static void loadRect( Scanner reader ){
 
 	    System.out.print("enter rectangle's sides' length ");
 
-        Scanner reader = new Scanner( System.in );
 
         double a = reader.nextDouble();
 
         double b = reader.nextDouble();
 
-        reader.close();
-
-
         shapes.push( new Rectangle( a, b ) );
 
 	}
+
+
+	private static void dispRect( Scanner reader ){
+
+	    for ( int i = 0 ; i < shapes.size() ; ++i){
+
+	        System.out.print( shapes.get(i).getA() +  " " + shapes.get(i).getB() + "\n" );
+
+        }
+    }
 
 
 
@@ -54,23 +60,29 @@ public class Test{
         Scanner reader = new Scanner( System.in );
 
 
-        menu();
+
 
         while (i != 0) {
 
+            menu();
 
             i = reader.nextInt();
-
 
 
             switch (i){
                 case 1:
                     //
-                    loadRect();System.out.print(i);
+                    loadRect( reader );
                     break;
 
                 case 2:
                     //
+                    dispRect( reader );
+                    break;
+
+                case 3:
+                    //
+                    dispRect( reader );
                     break;
 
                 case 0:
@@ -78,13 +90,15 @@ public class Test{
 
                 default:
                     //
+                    System.out.print("WRONG NUMBER");
                     break;
 
             }
 
-            menu();
 
         }
+
+        reader.close();
 
 	}
 
