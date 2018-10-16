@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Test{
 
@@ -9,67 +10,82 @@ public class Test{
 	private static LinkedList < Rectangle > shapes ;
 
 
+	private static void menu(){
+
+        System.out.print("1. load a new rectangle\n"+
+                "2. display all rectangles\n" +
+                "3. display the sum of all rectangles' areas\n" +
+                "0. end\n");
+
+    }
+
+
 	private static void loadRect(){
 
-	    System.out.print("enter rectangle's sides' length");
+	    System.out.print("enter rectangle's sides' length ");
 
-        try {
+        Scanner reader = new Scanner( System.in );
 
-            BufferedReader reader = new BufferedReader( new InputStreamReader(System.in) );
+        double a = reader.nextDouble();
 
-            double a = Double.parseDouble(reader.readLine());
+        double b = reader.nextDouble();
 
-            double b = Double.parseDouble(reader.readLine());
-
-            shapes.add( new Rectangle( a , b ));
+        reader.close();
 
 
-        }catch (IOException e){}
+        shapes.push( new Rectangle( a, b ) );
 
 	}
 
 
+
+
+
+
 	public static void main( String [] args ){
 	
-	
+
+	    shapes = new LinkedList<Rectangle>();
+
 		int i = 1;
 
-		while (i != 0) {
-
-			try {
-
-				InputStreamReader reader = new InputStreamReader(System.in);
-
-				BufferedReader buffer = new BufferedReader(reader);
-
-				i = Integer.parseInt(buffer.readLine());
 
 
-				System.out.print(i);
+        Scanner reader = new Scanner( System.in );
 
-				switch (i){
-					case 1:
-						//
-                        loadRect();
-						break;
 
-					case 2:
-						//
-						break;
+        menu();
 
-					case 0:
-						break;
+        while (i != 0) {
 
-					default:
-						//
-						break;
 
-				}
+            i = reader.nextInt();
 
-			}catch (IOException e){}
 
-		}
-	
+
+            switch (i){
+                case 1:
+                    //
+                    loadRect();System.out.print(i);
+                    break;
+
+                case 2:
+                    //
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    //
+                    break;
+
+            }
+
+            menu();
+
+        }
+
 	}
 
 
