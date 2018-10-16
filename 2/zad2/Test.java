@@ -113,7 +113,7 @@ public class Test{
 
                 default:
                     //
-                    System.out.print("WRONG NUMBER");
+                    System.out.print("WRONG NUMBER\n");
                     break;
 
             }
