@@ -11,9 +11,9 @@ public class Rectangle extends Square{
 
 	public Rectangle( double a2, double b2){
 	
-		a = a2;
+		super(a2);
 		
-		b = b2;
+		this.b = b2;
 		
 	}
 
