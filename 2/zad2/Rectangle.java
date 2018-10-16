@@ -19,4 +19,32 @@ public class Rectangle extends Square{
 
 
 
+	public double getB(){
+
+		return b;
+
+	}
+
+
+	public void setB( double b2){
+
+		b= b2;
+
+	}
+
+
+	public double area(){
+
+		return a*b;
+
+	}
+
+
+
+	public boolean isBigger( Rectangle R ){
+
+		return R.area() > this.area();
+
+	}
+
 }

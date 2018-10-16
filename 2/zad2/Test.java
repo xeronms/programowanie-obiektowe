@@ -7,6 +7,12 @@ public class main{
 	
 	
 		Square S = new Square (5);
+
+		Rectangle R = new Rectangle( 10, 5);
+
+		System.out.print(S.area() + R.area());
+
+
 	
 	
 	}
