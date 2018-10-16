@@ -10,6 +10,8 @@ public class Test{
 	private static LinkedList < Rectangle > shapes ;
 
 
+
+
 	private static void menu(){
 
         System.out.print("1. load a new rectangle\n"+
@@ -18,6 +20,7 @@ public class Test{
                 "0. end\n");
 
     }
+
 
 
 	private static void loadRect( Scanner reader ){
@@ -34,6 +37,7 @@ public class Test{
 	}
 
 
+
 	private static void dispRect( Scanner reader ){
 
 	    for ( int i = 0 ; i < shapes.size() ; ++i){
@@ -43,6 +47,25 @@ public class Test{
         }
     }
 
+
+
+    private static double areaSum(){
+
+	    double sum = 0;
+
+        for ( int i = 0 ; i < shapes.size() ; ++i){
+
+            sum += shapes.get(i).area();
+
+        }
+
+	    return sum;
+    }
+
+
+
+
+    ///////////////////////////////////////////
 
 
 
@@ -82,7 +105,7 @@ public class Test{
 
                 case 3:
                     //
-                    dispRect( reader );
+                    System.out.print( areaSum() );
                     break;
 
                 case 0:
