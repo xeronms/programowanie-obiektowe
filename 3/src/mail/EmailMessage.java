@@ -1,8 +1,5 @@
 package mail;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.LinkedList;
@@ -110,7 +107,7 @@ public class EmailMessage{
 
 
     public void send(){
-        String host="https://poczta.o2.pl/";      //change accordingly
+        String host="smtp.gmail.com";      //change accordingly
         final String user = from;
         final String password="xxxxxx";      //change accordingly
 
@@ -118,7 +115,11 @@ public class EmailMessage{
         //Get the session object
         Properties props = new Properties();
         props.put("mail.smtp.host",host);
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
 
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
@@ -141,7 +142,7 @@ public class EmailMessage{
 
             System.out.println("message sent successfully...");
 
-        }catch (Exception mex) { mex.printStackTrace();}
+        }catch (MessagingException mex) { mex.printStackTrace(); }
     }
 
 }
