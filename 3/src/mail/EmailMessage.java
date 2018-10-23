@@ -1,6 +1,14 @@
 package mail;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.regex.Pattern;
+
 
 public class EmailMessage{
 
@@ -86,7 +94,6 @@ public class EmailMessage{
 
     }
 
-
     //
     //Email address check
     private static class Checker{
@@ -102,6 +109,39 @@ public class EmailMessage{
     }
 
 
+    public void send(){
+        String host="https://poczta.o2.pl/";      //change accordingly
+        final String user = from;
+        final String password="xxxxxx";      //change accordingly
 
+
+        //Get the session object
+        Properties props = new Properties();
+        props.put("mail.smtp.host",host);
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(user,password);
+                    }
+                });
+
+        //Compose the message
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(user));
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress( to.get(0) ));
+
+            message.setSubject(subject );
+            message.setText( content );
+
+            //send the message
+            Transport.send(message);
+
+            System.out.println("message sent successfully...");
+
+        }catch (Exception mex) { mex.printStackTrace();}
+    }
 
 }
