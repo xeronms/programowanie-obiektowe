@@ -16,7 +16,6 @@ public class ROT11 implements Algorithm {
             out.append(letter);
         }
 
-
         return out.toString();
     }
 

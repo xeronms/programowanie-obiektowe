@@ -1,4 +1,5 @@
 import cipher.Cryptographer;
+import cipher.Polibius;
 import cipher.ROT11;
 
 import java.io.File;
@@ -11,12 +12,10 @@ public class Main {
         final File out= new File(args[1]);
 
         ROT11 cipher = new ROT11();
-
-        System.out.print(cipher.crypt("abcxyz")  + cipher.decrypt( cipher.crypt("abcxyz a")));
-
+        Polibius cipher2 = new Polibius();
 
         try {
-            Cryptographer.cryptfile(in, out, cipher);
+            Cryptographer.decryptfile(in, out, cipher2);
         }
         catch (IOException e){System.out.print("INVALID PATH");}
 
