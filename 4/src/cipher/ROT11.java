@@ -4,7 +4,6 @@ public class ROT11 implements Algorithm {
 
     public String crypt( String in ){
         StringBuilder out = new StringBuilder();
-        char tmp;
 
         for ( char letter : in.toCharArray() ){
             if ( letter < 'a' || letter > 'z' )
