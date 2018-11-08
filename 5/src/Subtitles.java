@@ -22,13 +22,12 @@ public class Subtitles {
         String pattern = "^\\{\\d+}\\{\\d+}.*";
 
         for ( String line : lines ){
-            String Numbers[] = new String[5];
             ++i;
 
             if ( ! line.matches(pattern))
                 throw new PatternMatchingException(i);
 
-            Numbers = line.split("}",5);
+            String Numbers[] = line.split("}");
             Numbers[0] = Numbers[0].replaceAll("\\D+","");
             Numbers[1] = Numbers[1].replaceAll("\\D+","");
             start = Integer.parseInt( Numbers[0]);
@@ -49,12 +48,11 @@ public class Subtitles {
 
             for ( int j=2; j<Numbers.length; ++j ) {
                 sb.append("}");
-                sb.append( Numbers[j] );
+                sb.append(Numbers[j]);
                 sb.append("\n");
             }
-            writer.write( sb.toString() );
         }
-
+        writer.write( sb.toString() );
         writer.close();
     }
 }
