@@ -15,12 +15,8 @@ public class Main {
             Subtitles.delay(in, out, Integer.parseInt(args[2]), Integer.parseInt(args[3]));
 
         }
-        catch (CharacterSequenceException|PatternMatchingException e) {
+        catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage() + e.getLocalizedMessage());
-            System.out.println("ERr");
         }
     }
 }
