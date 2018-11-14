@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Rectangle extends Shape {
 
-    int a;
-    int b;
+    private int a;
+    private int b;
 
     public Rectangle( int a, int b, int x, int y){
         super(x,y);
@@ -14,8 +14,7 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    public void draw(Graphics graphics) {
-        Graphics2D g = (Graphics2D)graphics;
+    public void draw(Graphics g){
         g.drawRect( this.x, this.y, this.a, this.b);
     }
 }

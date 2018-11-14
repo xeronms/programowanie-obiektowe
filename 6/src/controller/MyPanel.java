@@ -6,17 +6,18 @@ import java.awt.*;
 
 public class MyPanel extends Panel {
 
-    java.util.List<Shape> list;
+    private java.util.List<Shape> list = new java.util.ArrayList<>();
 
     public void add(Shape comp) {
         list.add( comp );
     }
 
-    public void printAll(Graphics g){
+    private void printComponent(Graphics g){
         super.printAll(g);
 
         for ( Shape shape : list){
             shape.draw( g );
         }
     }
+
 }
