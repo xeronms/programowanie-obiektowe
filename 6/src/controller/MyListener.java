@@ -20,7 +20,6 @@ public class MyListener implements MouseMotionListener {
     public MyListener(MyPanel myPanel){
         super();
         this.panel = myPanel;
-        addMouseMotionListener(this);
     }
 
 
