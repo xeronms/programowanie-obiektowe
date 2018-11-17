@@ -10,9 +10,10 @@ class DrawPanel extends JPanel {
         super();
         width = w;
         height = h;
-        p = p;
-        start = start;
-        end = end;
+        this.p = p;
+        this.start = start;
+        this.end = end;
+        this.step = step;
     }
 
     private void paintAxis(Graphics graphics) {
@@ -33,8 +34,7 @@ class DrawPanel extends JPanel {
         g.setColor(Color.blue);
 
         for (int x = start; x < end; x+=step){
-            g.drawLine(x, (int)p.value(x), x+step, (int)p.value(x+step));
-            System.out.printf( "%d %d %d %d \n",x ,(int)p.value(x), x+step, (int)p.value(x+step));
+            g.drawLine(x, height - (int)p.value(x), x+step, height - (int)p.value(x+step));
         }
     }
 

@@ -3,7 +3,7 @@ public class Polynomial {
     private double [] factors;
 
     Polynomial(double [] factors){
-        factors = factors;
+        this.factors = factors;
     }
 
     public double value(int x){
