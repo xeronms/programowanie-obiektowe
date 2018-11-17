@@ -7,7 +7,7 @@ public class Circle extends Shape {
     private int r;
 
     public Circle( int x, int y, int r){
-        super(x, y);
+        super(x, y, r, r);
         this.r = r;
     }
 

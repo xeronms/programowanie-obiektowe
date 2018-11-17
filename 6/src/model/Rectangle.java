@@ -4,13 +4,8 @@ import java.awt.*;
 
 public class Rectangle extends Shape {
 
-    private int a;
-    private int b;
-
-    public Rectangle( int a, int b, int x, int y){
-        super(x,y);
-        this.a = a;
-        this.b = b;
+    public Rectangle(  int x, int y, int a, int b){
+        super(x,y,a,b);
     }
 
     @Override

@@ -22,4 +22,12 @@ public class MyPanel extends Panel {
             shape.draw( g );
         }
     }
+
+
+
+    LinkedList<Shape> getList(){
+        return list;
+    }
+
+
 }
