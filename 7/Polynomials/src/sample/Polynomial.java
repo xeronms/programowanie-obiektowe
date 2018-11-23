@@ -1,18 +1,22 @@
 package sample;
 
+import java.util.ArrayList;
+
 public class Polynomial {
 
-    private double [] factors;
+    private ArrayList<Double> factors;
 
-    Polynomial(double [] factors){
+    Polynomial(ArrayList<Double> factors){
         this.factors = factors;
     }
 
     public double value(int x){
         double v = 0;
+        int i = 0;
 
-        for ( int i = 0 ; i < factors.length; ++i ){
-            v += factors[i] * Math.pow( x , i );
+        for ( double factor : factors ){
+            v += factor * Math.pow( x , i );
+            ++i;
             System.out.println(v);
         }
 
