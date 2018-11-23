@@ -17,7 +17,6 @@ public class Polynomial {
         for ( double factor : factors ){
             v += factor * Math.pow( x , i );
             ++i;
-            System.out.println(v);
         }
 
         return v;
