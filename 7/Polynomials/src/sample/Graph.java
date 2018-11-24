@@ -4,7 +4,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.*;
@@ -40,10 +39,19 @@ public class Graph {
             GraphicsContext gc = canvas.getGraphicsContext2D();
 
             draw(gc);
+            paintAxis(gc);
 
             root.getChildren().add(canvas);
             window.setScene(new Scene(root));
             window.show();
+    }
+
+    private void paintAxis(GraphicsContext g) {
+        g.strokeLine(0,height-2,width,height-2);
+        g.strokeLine(0,height-1,width,height-1);
+        g.strokeLine(0,height,width,height);
+        g.strokeLine(0,0,0,height);
+        g.strokeLine(1,0,1,height);
     }
 
     // drawing graph
