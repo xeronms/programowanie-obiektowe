@@ -7,15 +7,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    static final int width = 500;
-    static final int height = 500;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 
 
 
-        Scene scene1 = new Scene( Menu.getMenu(), width, height);
+        Scene scene1 = new Scene( Menu.getMenu(), 500, 500);
 
         primaryStage.setTitle("POLYNOMIALS");
         primaryStage.setScene( scene1);

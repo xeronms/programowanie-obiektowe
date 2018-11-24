@@ -10,7 +10,7 @@ public class Polynomial {
         this.factors = factors;
     }
 
-    public double value(int x){
+    public double value(double x){
         double v = 0;
         int i = 0;
 
