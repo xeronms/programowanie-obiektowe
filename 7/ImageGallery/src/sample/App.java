@@ -2,8 +2,6 @@ package sample;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class App extends Application {
