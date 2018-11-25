@@ -42,11 +42,8 @@ public class Gallery {
 
         scroll.setContent(tile);
 
-        // ??
-        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Horizontal
-        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical scroll bar
+        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scroll.setFitToWidth(true);
-        scroll.setContent(tile);
 
         return scroll;
     }

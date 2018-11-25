@@ -9,10 +9,9 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage){
 
-        Scene scene = new Scene( Gallery.createGallery(), 800, 500);
+        Scene scene = new Scene( Gallery.createGallery(), 1080, 720);
 
         primaryStage.setScene(scene);
-
         primaryStage.show();
     }
 
