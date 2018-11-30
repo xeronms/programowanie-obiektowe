@@ -1,10 +1,13 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 public class DataBase {
 
     private Connection connection = null;
     private Statement statement = null;
-    private ResultSet resultSet = null;
+    private ResultSet rs = null;
 
 
     // connecting to data base
@@ -25,27 +28,39 @@ public class DataBase {
         }
     }
 
-    public void listBooks(){
+    // creating and returning books list from data base
+    public ObservableList<Book> getBooksList(){
+
+        ObservableList< Book > books = FXCollections.observableArrayList();
         try {
             connect();
             statement = connection.createStatement();
-            // Wyciagamy wszystkie pola z kolumny name
-            // znajdujące się w tabeli users
-            resultSet = statement.executeQuery("SELECT * FROM books");
-            while(resultSet.next()){
-                String name = resultSet.getString(1);
+            rs = statement.executeQuery("SELECT * FROM books");
 
-                System.out.println("Uzytkownik: "+name);
+            while(rs.next()){
+
+                // adding to books list new book from data base
+                books.add( new Book(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4)
+                ) );
             }
-        }catch (SQLException ex){
+        }
+
+        catch (SQLException ex){
+            ex.printStackTrace();
             // handle any errors
-        }finally {
-            // zwalniamy zasoby, które nie będą potrzebne
-            if (resultSet != null) {
+        }
+        // releasing result set
+        finally {
+
+            if (rs != null) {
                 try {
-                    resultSet.close();
+                    rs.close();
                 } catch (SQLException sqlEx) { } // ignore
-                resultSet = null;
+                rs = null;
             }
             if (statement != null) {
                 try {
@@ -54,6 +69,8 @@ public class DataBase {
                 statement = null;
             }
         }
+
+        return books;
     }
 
 

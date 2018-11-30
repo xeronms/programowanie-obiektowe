@@ -11,7 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Library Data Base");
-        Scene scene = new Scene( new Menu().getMenu(), 1080,720);
+        Menu menu = new Menu();
+        Scene scene = new Scene( menu.getMenu(), 1080,720);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

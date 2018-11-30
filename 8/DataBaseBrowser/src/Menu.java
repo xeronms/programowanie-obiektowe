@@ -1,18 +1,25 @@
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+
 
 public class Menu {
 
     private ScrollPane root = new ScrollPane();
-    private TableView< DataBase > table = new TableView<>( );
+    private TableView< Book > table = new TableView<>( );
+
+    ObservableList< Book > books;
 
     public Menu(){
         DataBase db = new DataBase();
-        db.listBooks();
+        //db.connect();
+
+        books = db.getBooksList();
 
         //searching author
         TextField searchField = new TextField();
@@ -27,24 +34,37 @@ public class Menu {
 
         //composition
         VBox vbox = new VBox();
-        vbox.getChildren().addAll( searchField, table);
         vbox.setSpacing(10);
 
         //root
         root.setPadding(new Insets(20));
+
         createTable();
+        vbox.getChildren().addAll( searchField, table);
+
         root.setContent( vbox );
 }
-
-    public ScrollPane getMenu(){
-        return root;
-    }
 
     // creating table containing all data from main
     private void createTable(){
 
-        TableColumn< DataBase, String > idCol = new TableColumn<>("ID");
+        TableColumn< Book, Integer > idCol = new TableColumn<>("ID");
+        TableColumn< Book, String > titleCol = new TableColumn<>("Title");
+        TableColumn< Book, String > authorCol = new TableColumn<>("Author");
+        TableColumn< Book, Integer > yearCol = new TableColumn<>("year");
 
-        table.getColumns().addAll(idCol);
+        idCol.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        authorCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        yearCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        titleCol.setMinWidth(200);
+
+        table.setItems( books );
+        table.getColumns().addAll(idCol, titleCol, authorCol, yearCol);
+    }
+
+    public ScrollPane getMenu(){
+        return root;
     }
 }
