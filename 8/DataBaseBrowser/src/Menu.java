@@ -33,10 +33,10 @@ public class Menu {
             table.getItems().clear();
             // SELECT *....
             if ( StringUtils.isStrictlyNumeric( search )){
-                db.createBooksList("SELECT * FROM books WHERE isbn LIKE '" + search + "%'");
+                db.createBooksList("SELECT * FROM books WHERE isbn LIKE '% " + search + "%'");
         }
             else {
-                db.createBooksList("SELECT * FROM books WHERE author LIKE '" + search + "%'");
+                db.createBooksList("SELECT * FROM books WHERE author LIKE '% " + search + "%'");
             }
             books = db.getBooksList();
         });
@@ -88,7 +88,7 @@ public class Menu {
     }
 
     //  creating new windows and adding new element options
-    private String createWindow( String message ){
+    static String createWindow( String message ){
         Stage window = new Stage();
         AtomicReference<String> out = new AtomicReference<>();
 

@@ -10,6 +10,7 @@ public class DataBase {
     private ResultSet rs = null;
 
     ObservableList< Book > books = FXCollections.observableArrayList();
+    private int i = 0;
 
     //   creating connection
     public DataBase(){
@@ -25,9 +26,7 @@ public class DataBase {
                             "msienko1","6H8YTDRpTUrwPYpT");
         }
         catch (SQLException e){
-            System.out.println("SQLException: " + e.getMessage());
-            System.out.println("SQLState: " + e.getSQLState());
-            System.out.println("VendorError: " + e.getErrorCode());
+            reconnect(e);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -56,7 +55,7 @@ public class DataBase {
                 ) );
             }
         }catch (SQLException ex){
-            ex.printStackTrace();
+            reconnect( ex );
             // handle any errors
         } finally {
             close();
@@ -80,7 +79,7 @@ public class DataBase {
                             ")"
             );
         } catch (SQLException ex){
-            ex.printStackTrace();
+            reconnect( ex );
             // handle any errors
         } finally {
             close();
@@ -101,6 +100,21 @@ public class DataBase {
                 statement.close();
             } catch (SQLException sqlEx) { } // ignore
             statement = null;
+        }
+    }
+
+    //  reconnecting to server in case of lost connection exception
+    private void reconnect( SQLException e){
+        if ( i < 3){
+            ++i;
+            connect();
+        }
+        else{
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+
+            Menu.createWindow("NO CONNECTION");
         }
     }
 }
