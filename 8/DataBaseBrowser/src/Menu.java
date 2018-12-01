@@ -1,3 +1,4 @@
+import com.mysql.cj.util.StringUtils;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
@@ -18,18 +19,24 @@ public class Menu {
     public Menu(){
         DataBase db = new DataBase();
         //db.connect();
-
+        db.createBooksList();
         books = db.getBooksList();
 
-        //searching author
+        //searching author or id
         TextField searchField = new TextField();
         searchField.setPromptText( "Search author" );
         searchField.setPrefSize(500, 20);
         searchField.setOnAction(e -> {
             String search = searchField.getText();
-
+            table.getItems().clear();
             // SELECT *....
-
+            if ( StringUtils.isStrictlyNumeric( search )){
+                db.createBooksList("SELECT * FROM books WHERE isbn LIKE '" + search + "%'");
+        }
+            else {
+                db.createBooksList("SELECT * FROM books WHERE author LIKE '" + search + "%'");
+            }
+            books = db.getBooksList();
         });
 
         //composition
@@ -45,7 +52,7 @@ public class Menu {
         root.setContent( vbox );
 }
 
-    // creating table containing all data from main
+    // creating table containing all data from books list
     private void createTable(){
 
         TableColumn< Book, String > idCol = new TableColumn<>("ID");

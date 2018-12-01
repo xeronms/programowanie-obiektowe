@@ -3,19 +3,19 @@ import java.util.Date;
 
 public class Book {
 
-    private char[] isbn = new char[13];
+    private String isbn;
     private String title;
     private String author;
     private int year;
 
     public Book(String id, String t, String a, int y){
-        isbn = id.toCharArray();
+        isbn = id;
         title = t;
         author = a;
         year = y;
     }
 
-    public char[] getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 

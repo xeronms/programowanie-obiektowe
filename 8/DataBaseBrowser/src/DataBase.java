@@ -9,8 +9,18 @@ public class DataBase {
     private Statement statement = null;
     private ResultSet rs = null;
 
+    ObservableList< Book > books = FXCollections.observableArrayList();
 
-    // connecting to data base
+    //
+    //   creating connection
+    //
+    public DataBase(){
+        connect();
+    }
+
+    //
+    //  connecting to data base
+    //
     public void connect(){
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -28,14 +38,19 @@ public class DataBase {
         }
     }
 
-    // creating and returning books list from data base
-    public ObservableList<Book> getBooksList(){
+    //
+    //  creating books list from data base
+    //
+    //
+    public void createBooksList(){
+        createBooksList("SELECT * FROM books");
+    }
 
-        ObservableList< Book > books = FXCollections.observableArrayList();
+    public void createBooksList( String query ){
+
         try {
-            connect();
             statement = connection.createStatement();
-            rs = statement.executeQuery("SELECT * FROM books");
+            rs = statement.executeQuery( query );
 
             while(rs.next()){
 
@@ -48,14 +63,12 @@ public class DataBase {
                 ) );
             }
         }
-
         catch (SQLException ex){
             ex.printStackTrace();
             // handle any errors
         }
         // releasing result set
         finally {
-
             if (rs != null) {
                 try {
                     rs.close();
@@ -69,9 +82,10 @@ public class DataBase {
                 statement = null;
             }
         }
-
-        return books;
     }
 
+    public ObservableList<Book> getBooksList(){
+        return books;
+    }
 
 }
