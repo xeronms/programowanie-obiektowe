@@ -16,6 +16,7 @@ public class Menu {
 
     ObservableList< Book > books;
 
+    // all creating menu logic
     public Menu(){
         DataBase db = new DataBase();
         //db.connect();

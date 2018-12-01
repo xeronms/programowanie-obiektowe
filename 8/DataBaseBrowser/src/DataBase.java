@@ -11,16 +11,12 @@ public class DataBase {
 
     ObservableList< Book > books = FXCollections.observableArrayList();
 
-    //
     //   creating connection
-    //
     public DataBase(){
         connect();
     }
 
-    //
     //  connecting to data base
-    //
     public void connect(){
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -38,9 +34,7 @@ public class DataBase {
         }
     }
 
-    //
     //  creating books list from data base
-    //
     //
     public void createBooksList(){
         createBooksList("SELECT * FROM books");
