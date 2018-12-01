@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Library Data Base");
         Menu menu = new Menu();
-        Scene scene = new Scene( menu.getMenu(), 1080,720);
+        Scene scene = new Scene( menu.getMenu());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

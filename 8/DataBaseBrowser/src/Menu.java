@@ -48,20 +48,23 @@ public class Menu {
     // creating table containing all data from main
     private void createTable(){
 
-        TableColumn< Book, Integer > idCol = new TableColumn<>("ID");
+        TableColumn< Book, String > idCol = new TableColumn<>("ID");
         TableColumn< Book, String > titleCol = new TableColumn<>("Title");
         TableColumn< Book, String > authorCol = new TableColumn<>("Author");
         TableColumn< Book, Integer > yearCol = new TableColumn<>("year");
 
+
+
         idCol.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        authorCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        yearCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        authorCol.setCellValueFactory(new PropertyValueFactory<>("Author"));
+        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         titleCol.setMinWidth(200);
 
-        table.setItems( books );
         table.getColumns().addAll(idCol, titleCol, authorCol, yearCol);
+
+        table.setItems( books );
     }
 
     public ScrollPane getMenu(){
