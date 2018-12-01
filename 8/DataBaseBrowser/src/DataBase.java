@@ -34,20 +34,19 @@ public class DataBase {
         }
     }
 
-    //  creating books list from data base
+    //  creating books list from whole data base
     //
     public void createBooksList(){
         createBooksList("SELECT * FROM books");
     }
 
+    //  creating books list from SQL query
     public void createBooksList( String query ){
-
         try {
             statement = connection.createStatement();
             rs = statement.executeQuery( query );
 
             while(rs.next()){
-
                 // adding to books list new book from data base
                 books.add( new Book(
                         rs.getString(1),
@@ -56,25 +55,11 @@ public class DataBase {
                         rs.getInt(4)
                 ) );
             }
-        }
-        catch (SQLException ex){
+        }catch (SQLException ex){
             ex.printStackTrace();
             // handle any errors
-        }
-        // releasing result set
-        finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException sqlEx) { } // ignore
-                rs = null;
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException sqlEx) { } // ignore
-                statement = null;
-            }
+        } finally {
+            close();
         }
     }
 
@@ -82,4 +67,40 @@ public class DataBase {
         return books;
     }
 
+    //  adding new book to a data base
+    public void addBook( String id, String title, String author, int year ){
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(
+                    "INSERT INTO books VALUES ("+
+                            "'"+id+"'"+","+
+                            "'"+title+"'"+","+
+                            "'"+author+"'"+","+
+                            "'"+year+"'"+
+                            ")"
+            );
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            // handle any errors
+        } finally {
+            close();
+        }
+    }
+
+
+    //  releasing last statement and resultSet
+    private void close(){
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException sqlEx) { } // ignore
+            rs = null;
+        }
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException sqlEx) { } // ignore
+            statement = null;
+        }
+    }
 }
