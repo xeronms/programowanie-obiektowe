@@ -1,6 +1,3 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.sql.*;
 
 public class DataBase {
@@ -36,7 +33,6 @@ public class DataBase {
             }
         }
 
-
         @Override
         public void close(){
             if (rs != null) {
@@ -53,7 +49,6 @@ public class DataBase {
             }
         }
     }
-
 
     public synchronized void addResult( Date date, int x, int o, int points){
         try {
@@ -73,9 +68,6 @@ public class DataBase {
             connector.close();
         }
     }
-
-
-
 
     //  reconnecting to server in case of lost connection exception
     private void reconnect( SQLException e){

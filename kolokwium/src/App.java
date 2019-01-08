@@ -11,7 +11,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        primaryStage.setTitle("Library Data Base");
+        primaryStage.setTitle("Kolko i krzyrzyk");
 
         Game game= new Game();
         Scene scene = new Scene( game.getRoot());
